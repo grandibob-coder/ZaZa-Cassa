@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linee Guida Cassa Ristorante</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #27ae60;
+            --bg: #f8f9fa;
+            --text: #333;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); padding: 10px; }
+        header { text-align: center; padding: 15px 0; background: var(--primary); color: white; border-radius: 8px; margin-bottom: 15px; }
+        header h1 { font-size: 1.4rem; }
+        
+        /* Griglia dei Pulsanti (Metodi di Pagamento) */
+        .nav-tabs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px; }
+        .tab-btn { 
+            background: white; border: 2px solid #e0e0e0; padding: 15px 10px; 
+            border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; 
+            transition: all 0.2s; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .tab-btn.active { background: var(--accent); color: white; border-color: var(--accent); transform: scale(0.98); }
+        
+        /* Contenuto delle Istruzioni */
+        .tab-content { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: none; }
+        .tab-content.active { display: block; }
+        .tab-content h2 { margin-bottom: 15px; color: var(--primary); font-size: 1.3rem; border-bottom: 2px solid var(--bg); padding-bottom: 5px; }
+        
+        /* Lista delle Istruzioni */
+        ol { padding-left: 20px; }
+        li { margin-bottom: 12px; line-height: 1.5; font-size: 1.05rem; }
+        .alert { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px; margin-top: 15px; border-radius: 4px; font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Procedura Cassa & Pagamenti</h1>
+</header>
+
+<!-- Pulsanti di Selezione Rapida -->
+<div class="nav-tabs">
+    <button class="tab-btn active" onclick="openTab(event, 'contanti')">💵 Contanti</button>
+    <button class="tab-btn" onclick="openTab(event, 'carte')">💳 Carte / Bancomat</button>
+    <button class="tab-btn" onclick="openTab(event, 'satispay')">📱 Satispay</button>
+    <button class="tab-btn" onclick="event, openTab(event, 'ticket')">🎟️ Ticket Restaurant</button>
+</div>
+
+<!-- Sezione CONTANTI -->
+<div id="contanti" class="tab-content active">
+    <h2>💵 Pagamento in Contanti</h2>
+    <ol>
+        <li>Digita l'importo sul POS/Cassa e mostra il totale al cliente.</li>
+        <li>Ricevi il denaro e **conta i contanti davanti al cliente** inserendoli visibilmente sul bancone.</li>
+        <li>Inserisci l'importo ricevuto nel sistema per calcolare il resto elettronico.</li>
+        <li>Consegna prima il resto e poi lo scontrino fiscale.</li>
+    </ol>
+    <div class="alert">⚠️ <strong>Attenzione:</strong> Controlla sempre le banconote da 50€ e 100€ sotto la luce UV per verificare i falsi.</div>
+</div>
+
+<!-- Sezione CARTE -->
+<div id="carte" class="tab-content">
+    <h2>💳 Carte di Credito e Bancomat</h2>
+    <ol>
+        <li>Seleziona il tavolo sul gestionale e premi "Pagamento POS".</li>
+        <li>Digita l'importo esatto sul terminale POS fisico.</li>
+        <li>Porgi il POS al cliente per l'inserimento della carta o il sistema Contactless.</li>
+        <li>Attendi la dicitura **"TRANSAZIONE OK"** e la stampa dello scontrino del POS.</li>
+        <li>Chiudi il conto sulla cassa del ristorante e consegna lo scontrino fiscale al cliente.</li>
+    </ol>
+    <div class="alert">⚠️ <strong>Attenzione:</strong> Se la transazione è negata, chiedi un altro metodo di pagamento. Non far andare via il cliente senza la ricevuta "OK".</div>
+</div>
+
+<!-- Sezione SATISPAY -->
+<div id="satispay" class="tab-content">
+    <h2>📱 Pagamento Satispay</h2>
+    <ol>
+        <li>Comunica al cliente il nome del nostro ristorante su Satispay (o mostra il QR Code in cassa).</li>
+        <li>Attendi che sul tablet/smartphone di cassa arrivi la **notifica di pagamento**.</li>
+        <li>Verifica che la cifra corrisponda esattamente al totale del conto.</li>
+        <li>**Accetta il pagamento** cliccando sul touch screen del dispositivo aziendale.</li>
+        <li>Emetti lo scontrino fiscale dalla cassa principale inserendo come tipo pagamento "Satispay/Elettronico".</li>
+    </ol>
+</div>
+
+<!-- Sezione TICKET -->
+<div id="ticket" class="tab-content">
+    <h2>🎟️ Ticket Restaurant / Buoni Pasto</h2>
+    <ol>
+        <li>Verifica se il ticket è cartaceo o elettronico (tessera/app).</li>
+        <li>Se **Elettronico**: seleziona la voce "Buoni Pasto" sul POS dedicato e scansiona la tessera o il codice a barre sul telefono del cliente.</li>
+        <li>Se **Cartaceo**: controlla la data di scadenza e applica il timbro del ristorante sul retro di ogni buono.</li>
+        <li>Ricorda al cliente che **per legge non è possibile dare resto** sui buoni pasto.</li>
+        <li>Chiudi il conto selezionando "Ticket" come metodo di pagamento per emettere lo scontrino.</li>
+    </ol>
+</div>
+
+<script>
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+        tabcontent[i].classList.remove("active");
+    }
+    tablinks = document.getElementsByClassName("tab-btn");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+    document.getElementById(tabName).style.display = "block";
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+}
+</script>
+
+</body>
+</html>
