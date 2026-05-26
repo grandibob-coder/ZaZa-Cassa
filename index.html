@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linee Guida Cassa Ristorante</title>
+    <!-- Carica la libreria di icone universali FontAwesome -->
+    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root {
             --primary: #2c3e50;
@@ -26,7 +28,7 @@
         .tab-btn { 
             background: white; 
             border: 1.5px solid #dcdde1; 
-            padding: 14px 2px; 
+            padding: 12px 2px; 
             border-radius: 6px; 
             font-size: 0.78rem; 
             font-weight: bold; 
@@ -37,7 +39,13 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 4px;
+            gap: 6px;
+            color: var(--primary);
+        }
+        
+        /* Spazio e dimensione delle icone nei bottoni */
+        .tab-btn i {
+            font-size: 1.2rem;
             color: var(--primary);
         }
         
@@ -47,13 +55,19 @@
             padding: 16px 2px;
             font-size: 0.95rem;
         }
+        .btn-contante i {
+            font-size: 1.4rem;
+        }
         
+        /* Quando il tasto è attivo, testo e icona diventano bianchi sul fondo verde */
         .tab-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+        .tab-btn.active i { color: white; }
         
         /* Contenuto delle Istruzioni */
         .tab-content { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: none; }
         .tab-content.active { display: block; }
         .tab-content h2 { margin-bottom: 12px; color: var(--primary); font-size: 1.15rem; border-bottom: 2px solid var(--bg); padding-bottom: 5px; }
+        .tab-content h2 i { margin-right: 6px; }
         
         /* Lista delle Istruzioni */
         ol { padding-left: 18px; }
@@ -65,22 +79,36 @@
 
 <div class="nav-tabs">
     <!-- RIGA 1: A tutta pagina -->
-    <button class="tab-btn btn-contante active" onclick="openTab(event, 'contanti')">💵 CONTANTE</button>
+    <button class="tab-btn btn-contante active" onclick="openTab(event, 'contanti')">
+        <i class="fa-solid fa-money-bill-wave"></i> CONTANTE
+    </button>
     
     <!-- RIGA 2: Glovo, Satispay, Deliveroo -->
-    <button class="tab-btn" onclick="openTab(event, 'glovo')">🎒 GLOVO</button>
-    <button class="tab-btn" onclick="openTab(event, 'satispay')">📱 SATISPAY</button>
-    <button class="tab-btn" onclick="openTab(event, 'deliveroo')">🛵 DELIVEROO</button>
+    <button class="tab-btn" onclick="openTab(event, 'glovo')">
+        <i class="fa-solid fa-box"></i> GLOVO
+    </button>
+    <button class="tab-btn" onclick="openTab(event, 'satispay')">
+        <i class="fa-solid fa-mobile-screen-button"></i> SATISPAY
+    </button>
+    <button class="tab-btn" onclick="openTab(event, 'deliveroo')">
+        <i class="fa-solid fa-motorcycle"></i> DELIVEROO
+    </button>
     
     <!-- RIGA 3: Carte, Bonifico, Buoni -->
-    <button class="tab-btn" onclick="openTab(event, 'carte')">💳 CARTE</button>
-    <button class="tab-btn" onclick="openTab(event, 'bonifico')">🏦 BONIFICO</button>
-    <button class="tab-btn" onclick="openTab(event, 'ticket')">🎟️ BUONI</button>
+    <button class="tab-btn" onclick="openTab(event, 'carte')">
+        <i class="fa-solid fa-credit-card"></i> CARTE
+    </button>
+    <button class="tab-btn" onclick="openTab(event, 'bonifico')">
+        <i class="fa-solid fa-building-columns"></i> BONIFICO
+    </button>
+    <button class="tab-btn" onclick="openTab(event, 'ticket')">
+        <i class="fa-solid fa-ticket"></i> BUONI
+    </button>
 </div>
 
 <!-- Sezione CONTANTE -->
 <div id="contanti" class="tab-content active">
-    <h2>💵 Pagamento in Contanti</h2>
+    <h2><i class="fa-solid fa-money-bill-wave"></i> Pagamento in Contanti</h2>
     <ol>
         <li>Digita l'importo sul POS/Cassa e mostra il totale al cliente.</li>
         <li>Ricevi il denaro e conta i contanti davanti al cliente.</li>
@@ -92,7 +120,7 @@
 
 <!-- Sezione GLOVO -->
 <div id="glovo" class="tab-content">
-    <h2>🎒 Ordini Glovo</h2>
+    <h2><i class="fa-solid fa-box"></i> Ordini Glovo</h2>
     <ol>
         <li>Procedura da definire.</li>
     </ol>
@@ -100,7 +128,7 @@
 
 <!-- Sezione SATISPAY -->
 <div id="satispay" class="tab-content">
-    <h2>📱 Pagamento Satispay</h2>
+    <h2><i class="fa-solid fa-mobile-screen-button"></i> Pagamento Satispay</h2>
     <ol>
         <li>Comunica al cliente il nome del nostro ristorante su Satispay.</li>
         <li>Attendi che sul tablet/smartphone di cassa arrivi la notifica di pagamento.</li>
@@ -110,7 +138,7 @@
 
 <!-- Sezione DELIVEROO -->
 <div id="deliveroo" class="tab-content">
-    <h2>🛵 Ordini Deliveroo</h2>
+    <h2><i class="fa-solid fa-motorcycle"></i> Ordini Deliveroo</h2>
     <ol>
         <li>Procedura da definire.</li>
     </ol>
@@ -118,7 +146,7 @@
 
 <!-- Sezione CARTE -->
 <div id="carte" class="tab-content">
-    <h2>💳 Carte di Credito e Bancomat</h2>
+    <h2><i class="fa-solid fa-credit-card"></i> Carte di Credito e Bancomat</h2>
     <ol>
         <li>Seleziona il tavolo sul gestionale e premi "Pagamento POS".</li>
         <li>Digita l'importo esatto sul terminale POS fisico.</li>
@@ -129,7 +157,7 @@
 
 <!-- Sezione BONIFICO -->
 <div id="bonifico" class="tab-content">
-    <h2>🏦 Pagamento tramite Bonifico</h2>
+    <h2><i class="fa-solid fa-building-columns"></i> Pagamento tramite Bonifico</h2>
     <ol>
         <li>Procedura da definire.</li>
     </ol>
@@ -137,7 +165,7 @@
 
 <!-- Sezione TICKET (BUONI) -->
 <div id="ticket" class="tab-content">
-    <h2>🎟️ Buono pasto</h2>
+    <h2><i class="fa-solid fa-ticket"></i> Buono pasto</h2>
     <ol>
         <li>Verifica se il ticket è cartaceo o elettronico (tessera/app).</li>
         <li>Se Elettronico: seleziona la voce "Buoni Pasto" sul POS dedicato e scansiona il codice.</li>
