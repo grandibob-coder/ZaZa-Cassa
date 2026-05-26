@@ -49,7 +49,7 @@
             color: var(--primary);
         }
         
-        /* RIGA 1: CONTANTE occupa tutte e 3 le colonne in alto */
+        /* ULTIMA RIGA: CONTANTE occupa tutte e 3 le colonne in basso */
         .btn-contante {
             grid-column: 1 / span 3;
             padding: 16px 2px;
@@ -78,9 +78,15 @@
 <body>
 
 <div class="nav-tabs">
-    <!-- RIGA 1: A tutta pagina -->
-    <button class="tab-btn btn-contante active" onclick="openTab(event, 'contanti')">
-        <i class="fa-solid fa-money-bill-wave"></i> CONTANTE
+    <!-- RIGA 1: Carte, Bonifico, Buoni (CARTE attiva di default) -->
+    <button class="tab-btn active" onclick="openTab(event, 'carte')">
+        <i class="fa-solid fa-credit-card"></i> CARTE
+    </button>
+    <button class="tab-btn" onclick="openTab(event, 'bonifico')">
+        <i class="fa-solid fa-building-columns"></i> BONIFICO
+    </button>
+    <button class="tab-btn" onclick="openTab(event, 'ticket')">
+        <i class="fa-solid fa-ticket"></i> BUONI
     </button>
     
     <!-- RIGA 2: Glovo, Satispay, Deliveroo -->
@@ -94,28 +100,39 @@
         <i class="fa-solid fa-motorcycle"></i> DELIVEROO
     </button>
     
-    <!-- RIGA 3: Carte, Bonifico, Buoni -->
-    <button class="tab-btn" onclick="openTab(event, 'carte')">
-        <i class="fa-solid fa-credit-card"></i> CARTE
-    </button>
-    <button class="tab-btn" onclick="openTab(event, 'bonifico')">
-        <i class="fa-solid fa-building-columns"></i> BONIFICO
-    </button>
-    <button class="tab-btn" onclick="openTab(event, 'ticket')">
-        <i class="fa-solid fa-ticket"></i> BUONI
+    <!-- RIGA 3: A tutta pagina in basso -->
+    <button class="tab-btn btn-contante" onclick="openTab(event, 'contanti')">
+        <i class="fa-solid fa-money-bill-wave"></i> CONTANTE
     </button>
 </div>
 
-<!-- Sezione CONTANTE -->
-<div id="contanti" class="tab-content active">
-    <h2><i class="fa-solid fa-money-bill-wave"></i> Pagamento in Contanti</h2>
+<!-- Sezione CARTE (Attiva all'apertura) -->
+<div id="carte" class="tab-content active">
+    <h2><i class="fa-solid fa-credit-card"></i> Carte di Credito e Bancomat</h2>
     <ol>
-        <li>Digita l'importo sul POS/Cassa e mostra il totale al cliente.</li>
-        <li>Ricevi il denaro e conta i contanti davanti al cliente.</li>
-        <li>Inserisci l'importo ricevuto nel sistema per calcolare il resto.</li>
-        <li>Consegna prima il resto e poi lo scontrino fiscale.</li>
+        <li>Seleziona il tavolo sul gestionale e premi "Pagamento POS".</li>
+        <li>Digita l'importo esatto sul terminale POS fisico.</li>
+        <li>Porgi il POS al cliente per l'inserimento della carta o Contactless.</li>
+        <li>Attendi la dicitura "TRANSAZIONE OK" e la stampa dello scontrino.</li>
     </ol>
-    <div class="alert"><strong>Attenzione:</strong> Controlla sempre le banconote da 50€ e 100€ sotto la luce UV per verificare i falsi.</div>
+</div>
+
+<!-- Sezione BONIFICO -->
+<div id="bonifico" class="tab-content">
+    <h2><i class="fa-solid fa-building-columns"></i> Pagamento tramite Bonifico</h2>
+    <ol>
+        <li>Procedura da definire.</li>
+    </ol>
+</div>
+
+<!-- Sezione TICKET (BUONI) -->
+<div id="ticket" class="tab-content">
+    <h2><i class="fa-solid fa-ticket"></i> Buono pasto</h2>
+    <ol>
+        <li>Verifica se il ticket è cartaceo o elettronico (tessera/app).</li>
+        <li>Se Elettronico: seleziona la voce "Buoni Pasto" sul POS dedicato e scansiona il codice.</li>
+        <li>Se Cartaceo: controlla la data di scadenza e applica il timbro del ristorante sul retro.</li>
+    </ol>
 </div>
 
 <!-- Sezione GLOVO -->
@@ -144,33 +161,16 @@
     </ol>
 </div>
 
-<!-- Sezione CARTE -->
-<div id="carte" class="tab-content">
-    <h2><i class="fa-solid fa-credit-card"></i> Carte di Credito e Bancomat</h2>
+<!-- Sezione CONTANTE -->
+<div id="contanti" class="tab-content">
+    <h2><i class="fa-solid fa-money-bill-wave"></i> Pagamento in Contanti</h2>
     <ol>
-        <li>Seleziona il tavolo sul gestionale e premi "Pagamento POS".</li>
-        <li>Digita l'importo esatto sul terminale POS fisico.</li>
-        <li>Porgi il POS al cliente per l'inserimento della carta o Contactless.</li>
-        <li>Attendi la dicitura "TRANSAZIONE OK" e la stampa dello scontrino.</li>
+        <li>Digita l'importo sul POS/Cassa e mostra il totale al cliente.</li>
+        <li>Ricevi il denaro e conta i contanti davanti al cliente.</li>
+        <li>Inserisci l'importo ricevuto nel sistema per calcolare il resto.</li>
+        <li>Consegna prima il resto e poi lo scontrino fiscale.</li>
     </ol>
-</div>
-
-<!-- Sezione BONIFICO -->
-<div id="bonifico" class="tab-content">
-    <h2><i class="fa-solid fa-building-columns"></i> Pagamento tramite Bonifico</h2>
-    <ol>
-        <li>Procedura da definire.</li>
-    </ol>
-</div>
-
-<!-- Sezione TICKET (BUONI) -->
-<div id="ticket" class="tab-content">
-    <h2><i class="fa-solid fa-ticket"></i> Buono pasto</h2>
-    <ol>
-        <li>Verifica se il ticket è cartaceo o elettronico (tessera/app).</li>
-        <li>Se Elettronico: seleziona la voce "Buoni Pasto" sul POS dedicato e scansiona il codice.</li>
-        <li>Se Cartaceo: controlla la data di scadenza e applica il timbro del ristorante sul retro.</li>
-    </ol>
+    <div class="alert"><strong>Attenzione:</strong> Controlla sempre le banconote da 50€ e 100€ sotto la luce UV per verificare i falsi.</div>
 </div>
 
 <script>
