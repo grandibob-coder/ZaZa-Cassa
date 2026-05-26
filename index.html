@@ -4,33 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linee Guida Cassa Ristorante</title>
-    <!-- Carica la libreria di icone universali FontAwesome -->
+    <!-- Libreria icone universale FontAwesome -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root {
             --primary: #2c3e50;
-            --accent: #2ecc71; /* Verde brillante per il tasto attivo */
+            --accent: #2ecc71; /* Verde per il tasto attivo */
             --bg: #f8f9fa;
             --text: #333;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background-color: var(--bg); color: var(--text); padding: 8px; }
         
-        /* Griglia Bloccata: 3 colonne fisse */
-        .nav-tabs { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 6px; 
-            margin-bottom: 12px; 
-        }
+        /* Contenitore generale dei pulsanti */
+        .nav-container { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
         
-        /* Stile comune per tutti i bottoni */
+        /* Righe da 3 pulsanti */
+        .btn-row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+        
+        /* Riga singola per Contanti */
+        .btn-row-1 { display: grid; grid-template-columns: 1fr; }
+        
+        /* Stile comune di tutti i pulsanti */
         .tab-btn { 
             background: white; 
             border: 1.5px solid #dcdde1; 
             padding: 12px 2px; 
             border-radius: 6px; 
-            font-size: 0.78rem; 
+            font-size: 0.75rem; 
             font-weight: bold; 
             cursor: pointer; 
             transition: all 0.15s;
@@ -39,27 +40,18 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 5px;
             color: var(--primary);
         }
         
-        /* Spazio e dimensione delle icone nei bottoni */
-        .tab-btn i {
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
+        /* Icone dentro i pulsanti */
+        .tab-btn i { font-size: 1.1rem; color: var(--primary); }
         
-        /* ULTIMA RIGA: CONTANTE occupa tutte e 3 le colonne in basso */
-        .btn-contante {
-            grid-column: 1 / span 3;
-            padding: 16px 2px;
-            font-size: 0.95rem;
-        }
-        .btn-contante i {
-            font-size: 1.4rem;
-        }
+        /* Stile specifico per il pulsante grande CONTANTI */
+        .btn-large { padding: 15px 2px; font-size: 0.95rem; }
+        .btn-large i { font-size: 1.3rem; }
         
-        /* Quando il tasto è attivo, testo e icona diventano bianchi sul fondo verde */
+        /* Colore verde quando il pulsante è attivo */
         .tab-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
         .tab-btn.active i { color: white; }
         
@@ -69,7 +61,7 @@
         .tab-content h2 { margin-bottom: 12px; color: var(--primary); font-size: 1.15rem; border-bottom: 2px solid var(--bg); padding-bottom: 5px; }
         .tab-content h2 i { margin-right: 6px; }
         
-        /* Lista delle Istruzioni */
+        /* Liste operative */
         ol { padding-left: 18px; }
         li { margin-bottom: 10px; line-height: 1.4; font-size: 0.95rem; }
         .alert { background: #fff3cd; border-left: 4px solid #ffc107; padding: 8px; margin-top: 12px; border-radius: 4px; font-size: 0.85rem; color: #856404; }
@@ -77,36 +69,42 @@
 </head>
 <body>
 
-<div class="nav-tabs">
-    <!-- RIGA 1: Carte, Bonifico, Buoni (CARTE attiva di default) -->
-    <button class="tab-btn active" onclick="openTab(event, 'carte')">
-        <i class="fa-solid fa-credit-card"></i> CARTE
-    </button>
-    <button class="tab-btn" onclick="openTab(event, 'bonifico')">
-        <i class="fa-solid fa-building-columns"></i> BONIFICO
-    </button>
-    <button class="tab-btn" onclick="openTab(event, 'ticket')">
-        <i class="fa-solid fa-ticket"></i> BUONI
-    </button>
+<div class="nav-container">
+    <!-- RIGA 1: Carte, Bonifico, Buoni (CARTE attiva all'avvio) -->
+    <div class="btn-row-3">
+        <button class="tab-btn active" onclick="openTab(event, 'carte')">
+            <i class="fa-solid fa-credit-card"></i> CARTE
+        </button>
+        <button class="tab-btn" onclick="openTab(event, 'bonifico')">
+            <i class="fa-solid fa-building-columns"></i> BONIFICO
+        </button>
+        <button class="tab-btn" onclick="openTab(event, 'ticket')">
+            <i class="fa-solid fa-ticket"></i> BUONI
+        </button>
+    </div>
     
     <!-- RIGA 2: Glovo, Satispay, Deliveroo -->
-    <button class="tab-btn" onclick="openTab(event, 'glovo')">
-        <i class="fa-solid fa-box"></i> GLOVO
-    </button>
-    <button class="tab-btn" onclick="openTab(event, 'satispay')">
-        <i class="fa-solid fa-mobile-screen-button"></i> SATISPAY
-    </button>
-    <button class="tab-btn" onclick="openTab(event, 'deliveroo')">
-        <i class="fa-solid fa-motorcycle"></i> DELIVEROO
-    </button>
+    <div class="btn-row-3">
+        <button class="tab-btn" onclick="openTab(event, 'glovo')">
+            <i class="fa-solid fa-box"></i> GLOVO
+        </button>
+        <button class="tab-btn" onclick="openTab(event, 'satispay')">
+            <i class="fa-solid fa-mobile-screen-button"></i> SATISPAY
+        </button>
+        <button class="tab-btn" onclick="openTab(event, 'deliveroo')">
+            <i class="fa-solid fa-motorcycle"></i> DELIVEROO
+        </button>
+    </div>
     
-    <!-- RIGA 3: A tutta pagina in basso -->
-    <button class="tab-btn btn-contante" onclick="openTab(event, 'contanti')">
-        <i class="fa-solid fa-money-bill-wave"></i> CONTANTE
-    </button>
+    <!-- RIGA 3: Contanti a tutta pagina -->
+    <div class="btn-row-1">
+        <button class="tab-btn btn-large" onclick="openTab(event, 'contanti')">
+            <i class="fa-solid fa-money-bill-wave"></i> CONTANTI
+        </button>
+    </div>
 </div>
 
-<!-- Sezione CARTE (Attiva all'apertura) -->
+<!-- Sezione CARTE (Mostrata subito all'avvio) -->
 <div id="carte" class="tab-content active">
     <h2><i class="fa-solid fa-credit-card"></i> Carte di Credito e Bancomat</h2>
     <ol>
@@ -161,7 +159,7 @@
     </ol>
 </div>
 
-<!-- Sezione CONTANTE -->
+<!-- Sezione CONTANTI -->
 <div id="contanti" class="tab-content">
     <h2><i class="fa-solid fa-money-bill-wave"></i> Pagamento in Contanti</h2>
     <ol>
