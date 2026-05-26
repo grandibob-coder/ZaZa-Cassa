@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linee Guida Cassa Ristorante</title>
-    <!-- Libreria icone universale FontAwesome -->
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Caricamento della libreria stabile di icone professionali FontAwesome -->
+    <link rel="stylesheet" href="https://cloudflare.com" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         :root {
             --primary: #2c3e50;
@@ -36,7 +36,7 @@
             cursor: pointer; 
             transition: all 0.15s;
             text-align: center;
-            display: flex;
+            display: flex !important; /* Forza l'allineamento dell'icona */
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -44,16 +44,21 @@
             color: var(--primary);
         }
         
-        /* Icone dentro i pulsanti */
-        .tab-btn i { font-size: 1.1rem; color: var(--primary); }
+        /* REGOLE CSS PER LE ICONE DENTRO I PULSANTI (Mancavano o erano coperte) */
+        .tab-btn i, .tab-btn span.fa, .tab-btn svg { 
+            display: inline-block !important;
+            font-size: 1.2rem !important; 
+            color: var(--primary) !important;
+            margin-bottom: 2px;
+        }
         
         /* Stile specifico per il pulsante grande CONTANTI */
         .btn-large { padding: 15px 2px; font-size: 0.95rem; }
-        .btn-large i { font-size: 1.3rem; }
+        .btn-large i { font-size: 1.4rem !important; }
         
         /* Colore verde quando il pulsante è attivo */
-        .tab-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
-        .tab-btn.active i { color: white; }
+        .tab-btn.active { background: var(--accent) !important; color: white !important; border-color: var(--accent) !important; }
+        .tab-btn.active i { color: white !important; }
         
         /* Contenuto delle Istruzioni */
         .tab-content { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: none; }
